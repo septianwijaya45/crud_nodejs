@@ -2,7 +2,6 @@ const express       = require('express');
 const exphbs        = require('express-handlebars');
 const bodyParser    = require('body-parser');
 const path          = require('path');
-const db            = require('./db_config');
 
 // deklarasikan dotenv
 require('dotenv').config();
@@ -31,6 +30,9 @@ app.engine(
     })
 );
 app.set('view engine', 'hbs');
+
+// Database Setting
+const db            = require('./db_config')
 
 // router
 app.get('', (request, response) => {
