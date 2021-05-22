@@ -35,9 +35,8 @@ app.set('view engine', 'hbs');
 const db            = require('./db_config')
 
 // router
-app.get('', (request, response) => {
-    response.render('home', {title: 'Data User', active: {Home: true}});
-});
+const routes = require('./server/routes/user');
+app.use('/user', routes);
 
 app.listen(port, () => {
     console.log(`Server is running with port ${port}`);
