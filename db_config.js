@@ -8,10 +8,12 @@ const pool = mysql.createPool({
     database        : process.env.DB_NAME
 });
 
-pool.getConnection((error, connection) => {
-    if(error){
-        throw error;
-    }
+// pool.getConnection((error, connection) => {
+//     if(error){
+//         throw error;
+//     }
 
-    console.log('Connected as ID ' + connection.threadId);
-})
+//     console.log('Connected as ID ' + connection.threadId);
+// })
+
+module.exports = {pool};
