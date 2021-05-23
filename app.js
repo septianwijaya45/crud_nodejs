@@ -36,7 +36,9 @@ const db            = require('./db_config')
 
 // router
 const routes = require('./server/routes/user');
+const home = require('./server/routes/home');
 app.use('/user', routes);
+app.use('/', home);
 
 app.listen(port, () => {
     console.log(`Server is running with port ${port}`);
