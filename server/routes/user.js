@@ -8,6 +8,9 @@ const userController = require('../controllers/userController');
 router.get('/', userController.view);
 router.post('/', userController.find);
 
+router.get('/add-user', userController.form);
+router.post('/add-user', userController.create);
+
 // router.get('', (request, response) => {
 //     response.render('home');
 // }); //dihapus karena render template ditaruh di controller

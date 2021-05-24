@@ -1,0 +1,47 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/user">User</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Add User</li>
+  </ol>
+</nav>
+
+{{#if alert}}
+<div class="alert alert-secondary" role="alert">
+  {{alert}}
+</div>
+{{/if}}
+
+<form action="/user/add-user" method="POST" class="row needs-validation" novalidate>
+<div class="col-6">
+    <div class="mb-3">
+        <label for="first_name" class="form-label">First Name</label>
+        <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First Name">
+    </div>
+</div>
+<div class="col-6">
+    <div class="mb-3">
+        <label for="last_name" class="form-label">Last Name</label>
+        <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last Name">
+    </div>
+</div>
+<div class="col-6">
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="text" class="form-control" id="email" name="email" placeholder="Email">
+    </div>
+</div>
+<div class="col-6">
+    <div class="mb-3">
+        <label for="phone" class="form-label">Phone</label>
+        <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone">
+    </div>
+</div>
+<div class="col-12">
+    <div class="mb-3">
+        <label for="comment" class="form-label">Comment</label>
+        <textarea class="form-control" id="comment" name="comment" rows="3" placeholder="Comment User"></textarea>
+    </div>
+</div>
+
+<button type="submit" class="btn btn-success">Simpan</button>
+</form>
