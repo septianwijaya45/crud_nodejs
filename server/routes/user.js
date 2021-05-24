@@ -6,6 +6,7 @@ const userController = require('../controllers/userController');
 // Router
 // agak berbeda karena untuk CRUD dibuat spesific
 router.get('/', userController.view);
+router.post('/', userController.find);
 
 // router.get('', (request, response) => {
 //     response.render('home');
