@@ -1,0 +1,49 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/user">User</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Edit User</li>
+  </ol>
+</nav>
+
+<div class="view-user p-5">
+
+    {{#each row}}
+        <div class="row mb-5">
+            <div class="col text-center">
+                <h3>{{this.first_name}} {{this.last_name}}</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <table class="table table-bordered">
+                    <thead class="table-light">
+                        <tr>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {{!-- opening loop data --}}
+                        <tr>
+                            <td>{{this.first_name}}</td>
+                            <td>{{this.last_name}}</td>
+                            <td>{{this.email}}</td>
+                            <td>{{this.phone}}</td>
+                        </tr>
+                        {{!-- closing loop data --}}
+                    </tbody>
+                    </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>Comment User:</p>
+                {{this.comments}}
+            </div>
+        </div>
+    {{/each}}
+
+</div>

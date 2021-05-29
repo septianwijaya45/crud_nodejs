@@ -1,3 +1,9 @@
+{{#if removedUser}}
+<div class="alert alert-secondary" role="alert">
+  User Has Been removed!
+</div>
+{{/if}}
+
 <div class="row">
   <div class="col-md-12">
     <div class="col-6"><h3>Users</h3></div>
@@ -30,7 +36,7 @@
       <td>{{this.email}}</td>
       <td>{{this.phone}}</td>
       <td>
-          <a href="" type="button" class="btn btn-light btn-small"><i class="bi bi-eye"></i> View</a>
+          <a href="/user/detail-user/{{this.id}}" type="button" class="btn btn-light btn-small"><i class="bi bi-eye"></i> View</a>
           <a href="/user/edit-user/{{this.id}}" type="button" class="btn btn-light btn-small"><i class="bi bi-pencil-square"></i> Edit</a>
           <a href="/user/{{this.id}}" type="button" class="btn btn-light btn-small"><i class="bi bi-trash"></i> Delete</a>
       </td>

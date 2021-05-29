@@ -17,6 +17,8 @@ router.post('/edit-user/:id', userController.update);
 
 router.get('/:id', userController.delete);
 
+router.get('/detail-user/:id', userController.detail);
+
 // router.get('', (request, response) => {
 //     response.render('home');
 // }); //dihapus karena render template ditaruh di controller

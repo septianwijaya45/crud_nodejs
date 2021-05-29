@@ -17,7 +17,8 @@ exports.view = (request, response) => {
             connection.release();
 
             if(!error){
-                response.render('home', {title: 'Data User', active: {User: true}, rows});
+                let removedUser = request.query.removed;
+                response.render('home', {title: 'Data User', active: {User: true}, rows, removedUser});
             }else{
                 console.log(error);
             }
@@ -144,7 +145,29 @@ exports.delete = (request, response) => {
             connection.release();
 
             if(!error){
-                response.redirect('/user');
+                let removedUser = encodeURIComponent('User successfully removed');
+                response.redirect('/user?removed='+ removedUser);
+            }else{
+                console.log(error);
+            }
+
+        })
+    });
+}
+
+//detail user
+exports.detail = (request, response) => {
+    pool.getConnection((error, connection) => {
+        if(error) throw error;
+        console.log('Connected as ID ' + connection.threadId);
+
+        // user call query
+        connection.query('SELECT * FROM users WHERE id = ?', [request.params.id], (error, row) => {
+            // when done with connection, release it!
+            connection.release();
+
+            if(!error){
+                response.render('detail-user', {title: 'Detail Data User', active: {User: true}, row});
             }else{
                 console.log(error);
             }
