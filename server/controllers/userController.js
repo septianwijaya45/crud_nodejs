@@ -26,6 +26,7 @@ exports.view = (request, response) => {
     });
 }
 
+//search data user
 exports.find = (request, response) => {
     pool.getConnection((error, connection) => {
         if(error) throw error;
@@ -51,6 +52,7 @@ exports.form = (request, response) => {
     response.render('add-user.hbs', {title: 'Add Data User', active: {User: true}});
 }
 
+//create user
 exports.create = (request, response) => {
     const {first_name, last_name, email, phone, comment} = request.body;
     pool.getConnection((error, connection) => {
@@ -68,6 +70,64 @@ exports.create = (request, response) => {
             }else{
                 console.log(error);
             }
+        })
+    });
+}
+
+//edit user
+exports.edit = (request, response) => {
+    pool.getConnection((error, connection) => {
+        if(error) throw error;
+        console.log('Connected as ID ' + connection.threadId);
+
+        // user call query
+        connection.query('SELECT * FROM users WHERE id = ?', [request.params.id], (error, row) => {
+            // when done with connection, release it!
+            connection.release();
+
+            if(!error){
+                response.render('edit-user', {title: 'Data User', active: {User: true}, row});
+            }else{
+                console.log(error);
+            }
+
+        })
+    });
+}
+
+
+//update user
+exports.update = (request, response) => {
+    const {first_name, last_name, email, phone, comment} = request.body;
+
+    pool.getConnection((error, connection) => {
+        if(error) throw error;
+        console.log('Connected as ID ' + connection.threadId);
+
+        // user call query
+        connection.query('UPDATE users SET first_name = ? , last_name = ?, email = ?, phone = ?, comments = ? WHERE id = ?', [first_name, last_name, email, phone, comment, request.params.id], (error, row) => {
+            // when done with connection, release it!
+            connection.release();
+
+            if(!error){
+                // user call query
+                pool.getConnection((error, connection) => {
+                    connection.query('SELECT * FROM users WHERE id = ?', [request.params.id], (error, row) => {
+                        // when done with connection, release it!
+                        connection.release();
+    
+                        if(!error){
+                            response.render('edit-user', {title: 'Data User', active: {User: true}, row, alert: `${first_name} has been update!`});
+                        }else{
+                            console.log(error);
+                        }
+    
+                    });
+                });
+            }else{
+                console.log(error);
+            }
+
         })
     });
 }
