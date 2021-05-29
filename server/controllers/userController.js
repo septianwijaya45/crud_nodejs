@@ -131,3 +131,24 @@ exports.update = (request, response) => {
         })
     });
 }
+
+//delete user
+exports.delete = (request, response) => {
+    pool.getConnection((error, connection) => {
+        if(error) throw error;
+        console.log('Connected as ID ' + connection.threadId);
+
+        // user call query
+        connection.query('DELETE FROM users WHERE id = ?', [request.params.id], (error, row) => {
+            // when done with connection, release it!
+            connection.release();
+
+            if(!error){
+                response.redirect('/user');
+            }else{
+                console.log(error);
+            }
+
+        })
+    });
+}

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 // import Controller
 const userController = require('../controllers/userController');
+const { route } = require('./home');
 
 // Router
 // agak berbeda karena untuk CRUD dibuat spesific
@@ -13,6 +14,8 @@ router.post('/add-user', userController.create);
 
 router.get('/edit-user/:id', userController.edit);
 router.post('/edit-user/:id', userController.update);
+
+router.get('/:id', userController.delete);
 
 // router.get('', (request, response) => {
 //     response.render('home');
